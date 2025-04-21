@@ -1,15 +1,24 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.*;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter the name of the story you would like to read: ");
+            String fileName = input.nextLine();
+
+            try {
+                FileInputStream file = new FileInputStream(fileName);
+                Scanner fileScanner = new Scanner(file);
+
+                int i = 1;
+                while(fileScanner.hasNextLine()){
+                    System.out.println(i + ". " + fileScanner.nextLine());
+                    i++;
+                }
+            }catch (FileNotFoundException e){
+                System.out.println("File not found!");
+            }
     }
 }
